@@ -28,18 +28,6 @@ public class UserService {
         userRepo.save(user);
     }
 
-    public List<User> getAll() {
-        return userRepo.findAll();
-    }
-
-    public Optional<User> findById(ObjectId id) {
-        return userRepo.findById(id);
-    }
-
-    public void deleteById(ObjectId id) {
-        userRepo.deleteById(id);
-    }
-
     public User findByUserName(String userName) {
         return userRepo.findByUserName(userName);
     }

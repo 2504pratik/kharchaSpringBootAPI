@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+// To access these endpoints, authentication of user is needed.
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -20,6 +21,7 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
+    // Update user
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody User user) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -34,6 +36,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    // Delete user
     @DeleteMapping
     public ResponseEntity<?> deleteUser(@RequestBody User user) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

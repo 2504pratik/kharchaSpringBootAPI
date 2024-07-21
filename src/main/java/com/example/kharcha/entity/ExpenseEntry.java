@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
+// POJO file for Expense Entry
 @Document(collection = "expense_entries")
 @Data
 @NoArgsConstructor
