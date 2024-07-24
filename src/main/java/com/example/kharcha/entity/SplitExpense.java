@@ -1,7 +1,6 @@
 package com.example.kharcha.entity;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -9,26 +8,26 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
-// POJO file for Expense Entry
-@Document(collection = "expense_entries")
+@Document(collection = "split_expenses")
 @Data
-@NoArgsConstructor
-public class ExpenseEntry {
+public class SplitExpense {
+
     @Id
-    private ObjectId expenseId;
+    private ObjectId splitExpenseId;
 
     @NonNull
     private String title;
 
-    @NonNull
-    private double amount;
-
-    @DBRef
-    private User user;
-
-    @NonNull
     private LocalDateTime date;
 
-    private boolean isBorrowed;
+    @NonNull
+    private List<String> userNames;
+
+    @NonNull
+    private double totalAmount;
+
+    private List<Double> splitAmounts;
 }

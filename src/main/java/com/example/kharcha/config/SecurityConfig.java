@@ -44,7 +44,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/user/**","/expense/**").authenticated()
+                        .requestMatchers("/user/**","/expense/**","/split/**").authenticated()
                         .anyRequest().permitAll()
                 )
                 .userDetailsService(userDetailsService)

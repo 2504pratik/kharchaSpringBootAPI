@@ -1,6 +1,7 @@
 package com.example.kharcha.service;
 
 import com.example.kharcha.entity.User;
+import com.example.kharcha.exception.UserNotFoundException;
 import com.example.kharcha.repository.UserRepo;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class UserService {
         userRepo.save(user);
     }
 
-    public User findByUserName(String userName) {
+    public User findByUserName(String userName) throws UserNotFoundException {
         return userRepo.findByUserName(userName);
     }
 }

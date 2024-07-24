@@ -1,7 +1,11 @@
 package com.example.kharcha.controller;
 
 import com.example.kharcha.entity.ExpenseEntry;
+import com.example.kharcha.entity.SplitExpense;
 import com.example.kharcha.entity.User;
+import com.example.kharcha.exception.ExpenseNotFoundException;
+import com.example.kharcha.exception.InvalidSplitException;
+import com.example.kharcha.exception.UserNotFoundException;
 import com.example.kharcha.service.ExpenseEntryService;
 import com.example.kharcha.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -112,8 +116,8 @@ public class ExpenseEntryController {
             if (!newExpenseEntry.getTitle().isEmpty()) {
                 oldEntry.setTitle(newExpenseEntry.getTitle());
             }
-            if (newExpenseEntry.getPerson() != null) {
-                oldEntry.setPerson(newExpenseEntry.getPerson());
+            if (newExpenseEntry.getUser() != null) {
+                oldEntry.setUser(newExpenseEntry.getUser());
             }
             if (newExpenseEntry.getAmount() != 0) {  // Assuming 0 is not a valid amount
                 oldEntry.setAmount(newExpenseEntry.getAmount());

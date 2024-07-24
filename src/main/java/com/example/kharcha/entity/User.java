@@ -9,7 +9,9 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // POJO file for User
 @Document(collection = "users")
@@ -26,4 +28,7 @@ public class User {
 
     @DBRef // creates a link between collections users and journal_entries
     private List<ExpenseEntry> expenseEntries = new ArrayList<>();
+
+    @DBRef
+    private List<SplitExpense> splitExpenses = new ArrayList<>();
 }

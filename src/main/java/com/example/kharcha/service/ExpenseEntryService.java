@@ -2,7 +2,11 @@ package com.example.kharcha.service;
 
 import com.example.kharcha.entity.ExpenseEntry;
 import com.example.kharcha.entity.User;
+import com.example.kharcha.exception.ExpenseNotFoundException;
+import com.example.kharcha.exception.InvalidSplitException;
+import com.example.kharcha.exception.UserNotFoundException;
 import com.example.kharcha.repository.ExpenseEntryRepo;
+import com.example.kharcha.repository.UserRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +14,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Component
@@ -44,8 +50,11 @@ public class ExpenseEntryService {
         return expenseEntry;
     }
 
-    public Optional<ExpenseEntry> findById(ObjectId id) {
-        return expenseEntryRepo.findById(id);
+    public Optional<ExpenseEntry> findById(ObjectId expenseId) throws ExpenseNotFoundException{
+        ExpenseEntry expense;
+        expense = expenseEntryRepo.findById(expenseId)
+                .orElseThrow(() -> new ExpenseNotFoundException("Expense not found"));
+        return Optional.ofNullable(expense);
     }
 
     @Transactional
