@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -122,7 +123,7 @@ public class ExpenseEntryController {
             if (newExpenseEntry.getAmount() != 0) {  // Assuming 0 is not a valid amount
                 oldEntry.setAmount(newExpenseEntry.getAmount());
             }
-            oldEntry.setDate(newExpenseEntry.getDate());
+            oldEntry.setDate(LocalDateTime.now());
             // Always update isBorrowed as it's a boolean
             oldEntry.setBorrowed(newExpenseEntry.isBorrowed());
 

@@ -32,6 +32,15 @@ public class SplitExpenseController {
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String userName = authentication.getName();
+            List<Double> splitAmounts = split.getSplitAmounts();
+            double total = 0;
+            for(double splitAmount : splitAmounts) {
+                total += splitAmount;
+            }
+            if(total != split.getTotalAmount()) {
+                log.info("Total amount didn't match split total.");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
             splitExpenseService.saveNewSplitExpense(split);
             log.info("New expense entry created for user: {}",userName);
             return new ResponseEntity<>(split, HttpStatus.CREATED);

@@ -32,7 +32,7 @@ public class SplitExpenseService {
     public void saveNewSplitExpense(SplitExpense splitExpense) {
         try {
             splitExpense.setDate(LocalDateTime.now());
-            SplitExpense saved =splitExpensesRepo.save(splitExpense);
+            SplitExpense saved =saveSplitExpense(splitExpense);
             for(String userName : splitExpense.getUserNames()) {
                 User user = userRepo.findByUserName(userName);
                 user.getSplitExpenses().add(saved);
